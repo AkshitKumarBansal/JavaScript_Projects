@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="converter-card">
+    <header class="converter-header">
+      <h1>Currency Converter</h1>
+      <p>Check live foreign currency exchange rates</p>
+    </header>
+
+    <form id="converter-form" onsubmit="return false;">
+      <!-- Amount Input -->
+      <div class="input-group">
+        <label for="amount">Amount</label>
+        <input 
+          type="number" 
+          id="amount" 
+          value="1" 
+          min="1" 
+          step="any"
+          placeholder="Enter amount"
+          required
+        >
+      </div>
+
+      <!-- Currency Selectors Zone -->
+      <div class="currency-row">
+        <!-- From Currency -->
+        <div class="select-group">
+          <label for="from-currency">From</label>
+          <div class="select-wrapper">
+            <select id="from-currency">
+              <option value="USD" selected>USD - US Dollar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="INR">INR - Indian Rupee</option>
+              <option value="JPY">JPY - Japanese Yen</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Swap Button -->
+        <button type="button" id="swap-btn" class="swap-btn" title="Swap Currencies">
+          &#8646;
+        </button>
+
+        <!-- To Currency -->
+        <div class="select-group">
+          <label for="to-currency">To</label>
+          <div class="select-wrapper">
+            <select id="to-currency">
+              <option value="USD">USD - US Dollar</option>
+              <option value="EUR" selected>EUR - Euro</option>
+              <option value="GBP">GBP - British Pound</option>
+              <option value="INR">INR - Indian Rupee</option>
+              <option value="JPY">JPY - Japanese Yen</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Display Area -->
+      <div class="result-container" id="result-container">
+        <span class="rate-info" id="rate-info">1 USD = 0.92 EUR</span>
+        <h2 class="converted-amount" id="converted-amount">0.92 EUR</h2>
+      </div>
+
+      <!-- Submit Action Button -->
+      <button type="submit" id="convert-btn" class="convert-btn">
+        Get Exchange Rate
+      </button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
