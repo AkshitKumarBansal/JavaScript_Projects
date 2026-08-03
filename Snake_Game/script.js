@@ -1,97 +1,124 @@
-const board = document.getElementById("board");
-const ctx = board.getContext("2d");
-const square = 20;
+const canvas = document.getElementById("board");
+const context = canvas.getContext("2d");
+const scoreElement = document.getElementById("score");
+const restartBtn = document.getElementById("restart-btn");
 
-// Initial snake with 2 segments
-const snake = [
-  { x: 100, y: 100 },
-  { x: 80, y: 100 }
-];
+const blockSize = 25; 
+const rows = 20;
+const cols = 20;
 
-// Movement direction (initially right)
-const move = { x: square, y: 0 };
-let food_x = -1;
-let food_y = -1;
+let snakeX = blockSize * 5;
+let snakeY = blockSize * 5;
 
-// Draw one snake segment
-function draw_rect(part) {
-  ctx.fillStyle = 'lightblue';
-  ctx.strokeStyle = 'darkblue';
-  ctx.fillRect(part.x, part.y, 20, 20);
-  ctx.strokeRect(part.x, part.y, 20, 20);
+let velocityX = 0;
+let velocityY = 0;
+
+let snakeBody = [];
+
+let foodX;
+let foodY;
+
+let gameOver = false;
+let score = 0;
+
+let highScore = localStorage.getItem("snakeHighScore") || 0;
+
+window.onload = function() {
+    document.getElementById("highScore").innerText = highScore; 
+    
+    placeFood();
+    document.addEventListener("keydown", changeDirection);
+    
+    setInterval(update, 100);
 }
 
-// Draw the full snake
-function draw_snake() {
-  snake.forEach(draw_rect);
+function update() {
+    if (gameOver) {
+        return;
+    }
+
+    context.fillStyle = "black";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = "red";
+    context.fillRect(foodX, foodY, blockSize, blockSize);
+
+    if (snakeX === foodX && snakeY === foodY) {
+        snakeBody.push([foodX, foodY]); 
+        score += 10;
+        
+        if (score > highScore) {
+            highScore = score;
+            localStorage.setItem("snakeHighScore", highScore);
+        }
+        
+        scoreElement.innerHTML = `Score: ${score} | High Score: <span id="highScore">${highScore}</span>`;
+        
+        placeFood();
+    }
+
+    for (let i = snakeBody.length - 1; i > 0; i--) {
+        snakeBody[i] = snakeBody[i - 1];
+    }
+    if (snakeBody.length) {
+        snakeBody[0] = [snakeX, snakeY];
+    }
+
+    context.fillStyle = "lime";
+    snakeX += velocityX * blockSize;
+    snakeY += velocityY * blockSize;
+    context.fillRect(snakeX, snakeY, blockSize, blockSize);
+
+    for (let i = 0; i < snakeBody.length; i++) {
+        context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
+    }
+
+    if (snakeX < 0 || snakeX >= cols * blockSize || snakeY < 0 || snakeY >= rows * blockSize) {
+        gameOver = true;
+    }
+
+    for (let i = 0; i < snakeBody.length; i++) {
+        if (snakeX === snakeBody[i][0] && snakeY === snakeBody[i][1]) {
+            gameOver = true;
+        }
+    }
 }
 
-// Move the snake forward by 1  block
-function moveSnake() {
-  const head = snake[0];
-  const newHead = { 
-    x: head.x + move.x, 
-    y: head.y + move.y 
-  };
-  snake.unshift(newHead);
-  snake.pop();
+function changeDirection(e) {
+    if (e.code === "ArrowUp" && velocityY !== 1) {
+        velocityX = 0;
+        velocityY = -1;
+    }
+    else if (e.code === "ArrowDown" && velocityY !== -1) {
+        velocityX = 0;
+        velocityY = 1;
+    }
+    else if (e.code === "ArrowLeft" && velocityX !== 1) {
+        velocityX = -1;
+        velocityY = 0;
+    }
+    else if (e.code === "ArrowRight" && velocityX !== -1) {
+        velocityX = 1;
+        velocityY = 0;
+    }
 }
 
-// Clear the canvas
-function clear_canvas() {
-  ctx.fillStyle = "white";
-  ctx.strokeStyle = "black";
-  ctx.fillRect(0, 0, board.width, board.height);
-  ctx.strokeRect(0, 0, board.width, board.height);
+function placeFood() {
+    foodX = Math.floor(Math.random() * cols) * blockSize;
+    foodY = Math.floor(Math.random() * rows) * blockSize;
 }
 
-// TODO: implement this
-function random_food(min, max) {
-  const randomGridPos = Math.floor(Math.random() * ((max - min) / square + 1));
-  return randomGridPos * square;
+function resetGame() {
+    snakeX = blockSize * 5;
+    snakeY = blockSize * 5;
+    velocityX = 0;
+    velocityY = 0;
+    snakeBody = [];
+    score = 0;
+    gameOver = false;
+    
+    scoreElement.innerHTML = `Score: ${score} | High Score: <span id="highScore">${highScore}</span>`;
+    placeFood();
 }
 
-// TODO: implement this
-function gen_food() {
-  let valid = false;
-  while (!valid) {
-    food_x = random_food(20, 380);
-    food_y = random_food(20, 380);
-    valid = !snake.some(segment => segment.x === food_x && segment.y === food_y);
-  }
-  window.food_x = food_x; // for testing purpose
-  window.food_y = food_y; // for testing purpose
-
-}
-
-function drawFood() {
-  ctx.fillStyle = "red";
-  ctx.strokeStyle = "brown";
-  ctx.fillRect(food_x, food_y, square, square);
-  ctx.strokeRect(food_x, food_y, square, square);
-}
-
-// Game loop
-function main() {
-  setTimeout(() => {
-    clear_canvas();
-    if (food_x === -1 && food_y === -1) gen_food();
-    moveSnake();
-    draw_snake();
-    drawFood();
-    main();
-  }, 100);
-}
-
-// for testing purpose
-window.snake = snake;
-window.main = main;
-window.moveSnake = moveSnake;
-window.clear_canvas = clear_canvas;
-window.board = board;
-window.ctx = ctx;
-window.drawFood = drawFood;
-window.gen_food = gen_food;
-window.food_x = food_x;
-window.food_y = food_y;
-main();
+restartBtn.addEventListener("click", resetGame);
