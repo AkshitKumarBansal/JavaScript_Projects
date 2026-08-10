@@ -12,6 +12,7 @@ A collection of mini web applications built using **HTML, CSS, and Vanilla JavaS
 | [Currency Converter](./Currency_Convertor) | Converts an amount between currencies using live exchange rates fetched from the [Frankfurter API](https://frankfurter.dev/). |
 | [Expense Tracker](./Expense_Tracker) | Tracks income and expenses, updating a running balance and transaction history in real time. |
 | [Memory Card Game](./MemoryCard_Game) | A classic card-matching memory game that tests recall by flipping and matching pairs. |
+| [Quiz App](./Quiz_App) | A multiple-choice quiz on web development basics with instant answer feedback and a final score screen. |
 | [Rock Paper Scissors](./RockPaperScissor_Game) | Play Rock–Paper–Scissors against the computer with score tracking. |
 | [Snake Game](./Snake_Game) | The classic Snake game rendered on an HTML canvas, controlled with arrow keys. |
 | [Split Bill App](./Split_Bill) | Splits a bill among multiple people, including tip percentage calculations, with totals shown in ₹ (Rupees). |
