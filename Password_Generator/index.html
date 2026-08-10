@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class = "card">
+    <input type="text" id="password" placeholder="Your Password" readonly>
+    <button id="copy">Copy</button>
+    <input type="number" id="length" placeholder="Length" min="6" max="20" value="12">
+    <label><input type="checkbox" id="uppercase"> Include Uppercase</label>
+    <label><input type="checkbox" id="lowercase"> Include Lowercase</label>
+    <label><input type="checkbox" id="numbers"> Include Numbers</label>
+    <label><input type="checkbox" id="symbols"> Include Symbols</label>
+    <button id="generate">Generate Password</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
