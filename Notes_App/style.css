@@ -1,0 +1,135 @@
+:root {
+  --primary-color: #4a90e2;
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* --- Input Section --- */
+#input {
+  width: 100%;
+  max-width: 600px;
+  height: 120px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: none;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color var(--transition-speed) ease;
+  margin-bottom: 1rem;
+}
+
+#input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#submit {
+  align-self: center; /* Centers the button under the textarea */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+  margin-bottom: 3rem;
+}
+
+#submit:hover {
+  background-color: #357abd;
+}
+
+#submit:active {
+  transform: scale(0.98);
+}
+
+/* --- Notes Display Area --- */
+#notes-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* --- Individual Note Card (Matches your .note class) --- */
+.note {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  word-wrap: break-word;
+}
+
+.note:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Note Content (Matches your .note-text class) --- */
+.note-text {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* --- Delete Button (Matches your .delete-btn class) --- */
+.delete-btn {
+  align-self: flex-end; /* Pushes the button to the bottom right of the card */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  transition: color var(--transition-speed) ease;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  width: 100%;
+  text-align: right;
+}
+
+.delete-btn:hover {
+  color: #e74c3c;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+  
+  #notes-container {
+    grid-template-columns: 1fr;
+  }
+}
