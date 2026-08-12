@@ -1,0 +1,107 @@
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center the app on the screen with a gradient background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+/* The main white card */
+.container {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* Quote Area Styling */
+#quote-container {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 5px solid #3498db;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1.5rem; /* Pushes the bottom buttons down */
+}
+
+/* The actual quote text */
+#quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+/* CSS trick to add a quotation mark before the text */
+#quote::before {
+  content: '"';
+  font-size: 2rem;
+  color: #bdc3c7;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
+/* The author text */
+#author {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #7f8c8d;
+  text-align: right;
+}
+
+/* Shared Button Styles */
+button {
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 5px; /* Adds space between side-by-side buttons */
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Specific Button Colors */
+#generate-btn {
+  background-color: #3498db; /* Blue */
+}
+
+#generate-btn:hover {
+  background-color: #2980b9;
+}
+
+#copy-btn {
+  background-color: #2ecc71; /* Green */
+}
+
+#copy-btn:hover {
+  background-color: #27ae60;
+}
