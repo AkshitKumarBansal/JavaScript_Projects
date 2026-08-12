@@ -8,6 +8,7 @@ A collection of mini web applications built using **HTML, CSS, and Vanilla JavaS
 
 | Project | Description |
 |---|---|
+| [Age Calculator](./Age_Calculator) | Calculates your exact age in years, months, and days from your selected date of birth. |
 | [BMI Calculator](./BMI_Calculater) | Calculates Body Mass Index from height and weight input, and classifies the result (underweight, normal, overweight, etc.). |
 | [Currency Converter](./Currency_Convertor) | Converts an amount between currencies using live exchange rates fetched from the [Frankfurter API](https://frankfurter.dev/). |
 | [Expense Tracker](./Expense_Tracker) | Tracks income and expenses, updating a running balance and transaction history in real time. |
