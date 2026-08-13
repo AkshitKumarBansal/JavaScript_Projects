@@ -15,6 +15,7 @@ A collection of mini web applications built using **HTML, CSS, and Vanilla JavaS
 | [Memory Card Game](./MemoryCard_Game) | A classic card-matching memory game that tests recall by flipping and matching pairs. |
 | [Notes App](./Notes_App) | A note-taking app for jotting down quick notes, with notes saved in the browser via `localStorage` so they persist between visits. |
 | [Password Generator](./Password_Generator) | Generates random, secure passwords with a customizable length and selectable character types (uppercase, lowercase, numbers, symbols), plus one-click copy. |
+| [QR Code Generator](./QR_Generator) | Generates a scannable QR code from any URL or text you enter. |
 | [Quiz App](./Quiz_App) | A multiple-choice quiz on web development basics with instant answer feedback and a final score screen. |
 | [Quote Generator](./Quote_Generator) | Fetches and displays a random inspirational quote and author, with a one-click copy-to-clipboard option. |
 | [Rock Paper Scissors](./RockPaperScissor_Game) | Play Rock–Paper–Scissors against the computer with score tracking. |
